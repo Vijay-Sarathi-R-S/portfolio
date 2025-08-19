@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Info - Vijay Sarathi R S</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 35%, #16213e 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated background particles */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.1) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-30px) rotate(0.5deg); }
+      66% { transform: translateY(-20px) rotate(-0.5deg); }
+    }
+
+    .contact-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 50px 40px;
+      border-radius: 24px;
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      animation: slideUp 0.8s ease-out;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 
+        0 35px 70px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-header {
+      margin-bottom: 40px;
+    }
+
+    .card-title {
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .card-subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 400;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 24px 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .contact-item:hover::before {
+      left: 100%;
+    }
+
+    .contact-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .contact-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 16px;
+      flex-shrink: 0;
+      filter: brightness(0) invert(1);
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-icon {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .contact-content {
+      flex: 1;
+      text-align: left;
+    }
+
+    .contact-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 16px;
+      font-weight: 500;
+      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .contact-value:hover {
+      color: #64b5f6;
+      text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+    }
+
+    .contact-item.phone .contact-value {
+      letter-spacing: 0.5px;
+    }
+
+    .glow-effect {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #64b5f6, #7986cb, #64b5f6);
+      border-radius: 26px;
+      opacity: 0;
+      z-index: -1;
+      animation: rotate 3s linear infinite;
+      transition: opacity 0.3s ease;
+    }
+
+    .contact-card:hover .glow-effect {
+      opacity: 0.3;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .social-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      background: rgba(100, 181, 246, 0.1);
+      border: 1px solid rgba(100, 181, 246, 0.3);
+      border-radius: 20px;
+      margin-top: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .social-badge:hover {
+      background: rgba(100, 181, 246, 0.2);
+      border-color: rgba(100, 181, 246, 0.5);
+      transform: scale(1.05);
+    }
+
+    .linkedin-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      filter: brightness(0) invert(1);
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+      .contact-card {
+        margin: 20px;
+        padding: 30px 25px;
+      }
+      
+      .card-title {
+        font-size: 24px;
+      }
+      
+      .contact-content {
+        text-align: center;
+      }
+      
+      .contact-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .contact-icon {
+        margin-right: 0;
+        margin-bottom: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <div class="contact-card">
+      <div class="glow-effect"></div>
+      
+      <div class="card-header">
+        <h1 class="card-title">Vijay Sarathi R S</h1>
+        <p class="card-subtitle">Let's Connect</p>
+      </div>
+
+      <div class="contact-item phone">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.19 12.85C3.49998 10.2412 2.44818 7.27099 2.12 4.18C2.09501 3.90347 2.12788 3.62476 2.21649 3.36162C2.3051 3.09849 2.44748 2.85669 2.63468 2.65162C2.82187 2.44655 3.04974 2.28271 3.30372 2.17052C3.55771 2.05833 3.83227 2.00026 4.11 2H7.11C7.59531 1.99522 8.06711 2.16708 8.43849 2.48353C8.80988 2.79999 9.05423 3.23945 9.13 3.72C9.27111 4.68007 9.51762 5.62273 9.86 6.53C9.98375 6.88792 10.0067 7.27691 9.92574 7.65088C9.84479 8.02485 9.65578 8.36811 9.38 8.64L8.09 9.93C9.51356 12.4135 11.5865 14.4864 14.07 15.91L15.36 14.62C15.6319 14.3442 15.9751 14.1552 16.3491 14.0743C16.7231 13.9933 17.1121 14.0162 17.47 14.14C18.3773 14.4824 19.3199 14.7289 20.28 14.87C20.7658 14.9458 21.2094 15.1932 21.5265 15.5689C21.8437 15.9447 22.0122 16.4207 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="contact-content">
+          <div class="contact-label">Phone</div>
+          <a href="tel:+919952855157" class="contact-value">+91 9952855157</a>
+        </div>
+      </div>
+
+      <div class="contact-item email">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="contact-content">
+          <div class="contact-label">Email</div>
+          <a href="mailto:rsvijaysarathi123@gmail.com" class="contact-value">rsvijaysarathi123@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-item linkedin">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8V8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="contact-content">
+          <div class="contact-label">LinkedIn</div>
+          <a href="https://www.linkedin.com/in/vijay-sarathi-r-s/" target="_blank" class="contact-value">
+            Vijay Sarathi R S
+            <div class="social-badge">
+              <svg class="linkedin-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 13V21H14V14.5C14 13.1 13.4 12 12 12S10 13.1 10 14.5V21H6V13C6 10.8 7.8 9 10 9S14 10.8 14 13Z" fill="currentColor"/>
+                <rect x="2" y="9" width="4" height="12" fill="currentColor"/>
+                <circle cx="4" cy="4" r="2" fill="currentColor"/>
+              </svg>
+              Connect
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
